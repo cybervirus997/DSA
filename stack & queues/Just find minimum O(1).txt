@@ -1,0 +1,118 @@
+Just find minimum -9479:12:14
+Description
+
+You are given N which is the number of different types of operation you need to perform on a stack. There are 3 different types of operations:
+
+PUSH V: Here V is an integer which you need to push in the stack
+
+POP: Here POP out the top element from stack. (In case stack is empty print "EMPTY")
+
+MIN: Print the minimum value present in the stack
+
+
+Input
+Input Format
+
+First line contains N which is the number of operations you need to perform on stack
+
+Next N line contains one of the 3 operations mentioned above
+
+Constraints
+
+N < 1000000
+
+V < 100
+
+
+
+
+Output
+Output Format
+
+The output consists of a line containing an integer with the smallest present value in the stack for queries of type "MIN" or "EMPTY" for "MIN" and "POP" operations when the stack is empty.
+
+
+Sample Input 1 
+
+11
+PUSH 5
+PUSH 7
+PUSH 3
+PUSH 8
+PUSH 10
+MIN
+POP
+POP
+MIN
+POP
+MIN
+Sample Output 1
+
+3
+3
+5
+
+sol:
+
+function runProgram(input)
+{
+	let ip=input.split("\n");
+	
+	let stack=[];
+	let currMin;
+	for(let i=1;i<ip.length;i++)
+	{
+	    let command=ip[i].split(" ");
+	    let operation=command[0];
+	    let digit=Number(command[1]);
+	    
+	    //console.log(operation,digit)
+	    
+	    if(operation==="PUSH")
+	    {
+	        if(stack.length==0)
+	        {
+	            stack.push(digit);
+	            currMin=digit;
+	        }else
+	        {
+	            if(currMin>digit)
+	            {
+	                let res=digit-currMin;
+	                stack.push(res)
+	                currMin=digit;
+	            }else
+	            {
+	                stack.push(digit)
+	            }
+	        }
+	    }
+	    else if(operation==="POP")
+	    {
+	        
+	        if(stack.length==0)
+	        {
+	            console.log("EMPTY")
+	        }
+	        else if(stack[stack.length-1]<currMin)
+	        {
+	            currMin=currMin-stack[stack.length-1];
+	             stack.pop();
+	            
+	        }else
+	        {   
+	            stack.pop();
+	        }
+	    }
+	    else if(operation==="MIN") {
+	        if(stack.length===0)
+	        {
+	            console.log("EMPTY");
+	        }else
+	        console.log(currMin);
+	    }
+	    
+	}
+	
+
+}

@@ -1,0 +1,30 @@
+Infix to Postfix Ended
+Description
+
+You are given an infix expression, you need to convert it to a postfix expression.
+
+Infix expression is an expression that is in the form of (a operator b). eg. a + b, a * b.
+
+Postfix expression is an expression that is in the form of (a b operator). eg. a b +, a b *.
+
+
+Input
+Input Format
+
+First-line of input contains the infix expression
+
+Constraints
+
+Number of the operands<=26
+
+
+Output
+Print the postfix expression
+
+
+Sample Input 1 
+
+a+b-c+d*(e-f)/g+(h*(i/j))
+Sample Output 1
+
+ab+c-def-*g/+hij/*+

@@ -1,0 +1,123 @@
+Again a classical problem -9478:9:25
+Description
+
+A bracket is considered to be any one of the following characters: (, ), {, }, [, or ].
+
+Two brackets are considered to be a matched pair if the opening bracket (i.e., (, [, or {) occurs to the left of a closing bracket (i.e., ), ], or }) of the exact same type. There are three types of matched pairs of brackets: [], {}, and ().
+
+A matching pair of brackets is not balanced if the set of brackets it encloses are not matched. For example, {[(])} is not balanced because the contents in between { and } are not balanced. The pair of square brackets enclose a single, unbalanced opening bracket, (, and the pair of parentheses encloses a single, unbalanced closing square bracket, ].
+
+By this logic, we say a sequence of brackets is balanced if the following conditions are met:
+
+It contains no unmatched brackets.
+
+The subset of brackets enclosed within the confines of a matched pair of brackets is also a matched pair of brackets.
+
+Given a string, you have to comment if it is balanced or not
+
+
+Input
+Input Format
+
+First line of input contains t which is the number of test cases present in the question
+
+Each test case has a string
+
+Constraints
+
+t < 100
+
+length of string < 100
+
+
+Output
+Print "balanced" if the string is balanced, otherwise print "not balanced" in case the string is not balanced
+
+
+Sample Input 1 
+
+3
+{([])}
+()
+([]
+Sample Output 1
+
+balanced
+balanced
+not balanced
+
+
+sol:
+
+function runProgram(input)
+{
+	let ip=input.split("\n");
+	for(let i=1;i<ip.length;i++)
+	{
+	    let arr=ip[i].split("");
+	    
+	   // console.log(arr);
+	    
+	    if(arr.length!=0)
+	    {
+    	    if(checker(arr))
+    	    {
+    	        console.log("balanced")
+    	    }else
+    	    {
+    	         console.log("not balanced")
+    	    }
+	    }
+	}
+	
+	function checker(arr)
+	{
+	    let stack=[];
+	    for(let i=0;i<arr.length;i++)
+	    {
+	        if(arr[i]=="(" || arr[i]=="{" || arr[i]=="[")
+	        {
+	            stack.push(arr[i]);
+	        }else
+	        {
+	            let temp=arr[i];
+	            let past=stack[stack.length-1];
+	            if(doubleChecker(temp,past))
+	            {
+	                stack.pop();
+	            }else
+	            {
+	                return false;
+	                break;
+	            }
+	        }
+	    }
+	    
+	    if(stack.length===0)
+	    {
+	        return true;
+	    }else
+	    {
+	        return false;
+	    }
+	}
+	
+	function doubleChecker(temp,past)
+	{
+	    if(temp==")" && past=="(")
+	    {
+	        return true;
+	    }
+	    else if(temp=="]" && past=="[")
+	    {
+	        return true;
+	    }
+	    else if(temp=="}" && past=="{")
+	    {
+	        return true;
+	    }
+	    
+	    return false;
+	}
+
+}
